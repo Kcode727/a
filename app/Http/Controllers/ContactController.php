@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use App\Models\Contact; 
 
 class ContactController extends Controller
 {
@@ -12,11 +14,24 @@ class ContactController extends Controller
     }
     public function store(Request $request)
     {
-        return redirect()->route('list.contacts'); 
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:contacts',
+            'phone' => 'required|string|max:15',
+        ]);
+    
+        // Save the contact (assuming you have a Contact model set up)
+        Contact::create($request->all());
+    
+        // Redirect to the list of contacts
+        return redirect()->route('list.contacts'); // Ensure this route exists
     }
+    
     public function index()
     {
-        return view('listContacts', compact('contacts')); 
+        $contacts = Contact::all(); 
+        return view('listContacts', compact('contacts'));
     }
     public function destroy(Request $request)
     {
