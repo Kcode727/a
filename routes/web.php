@@ -7,7 +7,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Show add contact form
 Route::get('/add-contact', [ContactController::class, 'create'])->name('add.contact');
-Route::post('/add-contact', [ContactController::class, 'store']);
+
+// Handle add contact form submission
+Route::post('/add-contact', [ContactController::class, 'store'])->name('store.contact');
+
+// List contacts route
 Route::get('/list-contacts', [ContactController::class, 'index'])->name('list.contacts');
-Route::post('/delete-contact', [ContactController::class, 'destroy'])->name('delete.contact');
+
+// Show delete contacts page
+Route::get('/delete-contacts', [ContactController::class, 'showDeleteContacts'])->name('show.delete.contacts');
+
+// Handle bulk delete
+Route::post('/delete-contacts', [ContactController::class, 'deleteMultipleContacts'])->name('delete.contacts');
+

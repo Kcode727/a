@@ -66,7 +66,7 @@
             <a href="/list-contacts" class="btn btn-secondary">
                 <i class="fas fa-list-alt icon"></i>List Contacts
             </a>
-            <a href="/delete-contact" class="btn btn-danger">
+            <a href="/delete-contacts" class="btn btn-danger">
                 <i class="fas fa-user-minus icon"></i>Delete Contact
             </a>
         </div>
